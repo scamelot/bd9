@@ -36,7 +36,7 @@ def main():
         write_date_to_file(backdater_path, today)
 
     date = read_date_from_file(backdater_path)
-    text_with_date = f'git commit -m "{args.string}" --date "{date.strftime("%Y-%m-%d")}"'
+    text_with_date = f'git commit -m "{args.string}" --date "{date.strftime("%m-%d-%Y")}"'
     pyperclip.copy(text_with_date)
     print(f'Copied to clipboard: {text_with_date}')
 
