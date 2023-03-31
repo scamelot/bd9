@@ -26,7 +26,7 @@ def main():
     args = parse_arguments()
 
     home_dir = os.path.expanduser('~')
-    backdater_path = os.path.join(home_dir, '.backdater')
+    backdater_path = os.path.join(home_dir, '.bd9')
 
     if args.start:
         start_date = datetime.datetime.strptime(args.start, '%m-%d-%Y').date()
