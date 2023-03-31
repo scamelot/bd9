@@ -17,9 +17,9 @@ def increment_date(date):
     return date + datetime.timedelta(days=1)
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='Backdater: Copy text with a date and increment the date.')
+    parser = argparse.ArgumentParser(description='bd9: Copy a github commit with a date then increment the date.')
     parser.add_argument('string', help='The text to copy with the date.')
-    parser.add_argument('--start', metavar='MM-DD-YYYY', help='The initial date (format: MM-DD-YYYY).')
+    parser.add_argument('--start', metavar='MM-DD-YYYY', help='Set the initial date (format: MM-DD-YYYY).')
     return parser.parse_args()
 
 def main():
