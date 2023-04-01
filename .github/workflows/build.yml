@@ -92,14 +92,16 @@ jobs:
 
     - name: Install jq
       run: sudo apt-get install jq
-      
+
     - name: Create GitHub Release
       run: |
         latest_release=$(curl --silent "https://api.github.com/repos/scamelot/bd9/releases/latest" | jq -r .tag_name)
         IFS="." read -ra version_parts <<< "$latest_release"
         ((version_parts[2]++))
         new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
-        gh release create $new_version -t "Release $new_version" -n "Release $new_version" artifacts/*/*
+        echo "Latest release: $latest_release"
+        echo "New version: $new_version"
+        gh release create $new_version -t "Release $new_version" -n "Release $new_version" artifacts/*/* --debug
 
     - name: Calculate SHA256 sums
       run: |
