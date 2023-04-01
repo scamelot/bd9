@@ -44,7 +44,7 @@ jobs:
 
     - name: Build binary with PyInstaller
       run: |
-        pyinstaller --onefile --name bd9-${{ matrix.platform }}-${{ matrix.arch }} --distpath dist --clean main.py
+        pyinstaller --onefile --name bd9-${{ matrix.platform }}-${{ matrix.arch }} --distpath dist --clean bd9.py
 
     - name: Upload binaries as artifacts
       uses: actions/upload-artifact@v2
