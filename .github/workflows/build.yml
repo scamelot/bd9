@@ -55,7 +55,7 @@ jobs:
       run: |
         cd dist
         if [ "${{ matrix.extension }}" == "zip" ]; then
-          powershell -Command "Compress-Archive -Path 'bd9-${{ matrix.platform }}-${{ matrix.arch }}*' -DestinationPath '../bd9-${{ matrix.platform }}-${{ matrix.arch }}.zip'"platform }}-${{ matrix.arch }}*
+          powershell -Command "Compress-Archive -Path 'bd9-${{ matrix.platform }}-${{ matrix.arch }}*' -DestinationPath '../bd9-${{ matrix.platform }}-${{ matrix.arch }}.zip'"
         else
           tar czvf ../bd9-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz bd9-${{ matrix.platform }}-${{ matrix.arch }}*
         fi
