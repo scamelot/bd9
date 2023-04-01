@@ -22,7 +22,7 @@ jobs:
             arch: arm64
             platform: darwin
           - os: macos-latest
-            arch: x86_64
+            arch: universal2
             platform: darwin
 
     steps:
