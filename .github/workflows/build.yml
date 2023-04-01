@@ -114,26 +114,26 @@ jobs:
         fi
 
         cat << EOF > bd9.rb
-class Bd9 < Formula
-  desc "Bd9 description"  # Update with your project description
-  homepage "https://github.com/scamelot/bd9"  # Update with your repository URL
-  url "$binary_url"
-  version "$version"
-  sha256 "$sha256sum"
+          class Bd9 < Formula
+            desc "Github Commit Backdater"  
+            homepage "https://github.com/scamelot/bd9"
+            url "$binary_url"
+            version "$version"
+            sha256 "$sha256sum"
 
-  def install
-    if OS.mac?
-      bin.install "bd9-darwin-universal" => "bd9"
-    elsif OS.linux?
-      bin.install "bd9-linux-x86_64" => "bd9"
-    end
-  end
+            def install
+              if OS.mac?
+                bin.install "bd9-darwin-universal" => "bd9"
+              elsif OS.linux?
+                bin.install "bd9-linux-x86_64" => "bd9"
+              end
+            end
 
-  test do
-    system "#{bin}/bd9", "-h"
-  end
-end
-EOF
+            test do
+              system "#{bin}/bd9", "-h"
+            end
+          end
+          EOF
 
     - name: Commit and push Homebrew Formula
       run: |
