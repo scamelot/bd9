@@ -79,23 +79,13 @@ jobs:
       with:
         path: artifacts
 
-    - name: Install GitHub CLI
-      run: |
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 23F3D4EA75716059
-        sudo apt-add-repository https://cli.github.com/packages
-        sudo apt update
-        sudo apt install gh
-
     - name: Configure GitHub CLI
       run: |
         gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
 
-    - name: Install jq
-      run: sudo apt-get install jq
-
     - name: Create GitHub Release
       run: |
-        latest_release=$(curl --silent "https://api.github.com/repos/scamelot/bd9/releases/latest" | jq -r .tag_name)
+        latest_release=$(curl --silent "https://api.github.com/repos/yourusername/yourrepository/releases/latest" | grep -oP '"tag_name": "\K[^"]+')
         IFS="." read -ra version_parts <<< "$latest_release"
         ((version_parts[2]++))
         new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
