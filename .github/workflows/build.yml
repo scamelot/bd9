@@ -90,6 +90,9 @@ jobs:
       run: |
         gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
 
+    - name: Install jq
+      run: sudo apt-get install jq
+      
     - name: Create GitHub Release
       run: |
         latest_release=$(curl --silent "https://api.github.com/repos/scamelot/bd9/releases/latest" | jq -r .tag_name)
