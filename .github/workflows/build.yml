@@ -51,6 +51,7 @@ jobs:
         pyinstaller --onefile --name bd9-${{ matrix.platform }}-${{ matrix.arch }} --distpath dist --clean bd9.py
 
     - name: Compress binary
+      shell: bash
       run: |
         cd dist
         if [ "${{ matrix.extension }}" == "zip" ]; then
