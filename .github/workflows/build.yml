@@ -93,6 +93,7 @@ jobs:
     - name: Create GitHub Release
       run: |
         version=$(git rev-list --count HEAD)
+        echo $version
         gh release create $version -t "Release $version" -n "Release $version" artifacts/*/*
 
     - name: Calculate SHA256 sums
