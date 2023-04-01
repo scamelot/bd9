@@ -3,7 +3,7 @@ name: Build, Release, and Homebrew
 on:
   push:
     branches:
-      - main  # Change to the branch you want to trigger the build on
+      - main 
 
 jobs:
   build:
@@ -151,3 +151,4 @@ jobs:
         git add bd9.rb
         git commit -m "Update bd9 formula to version $version"
         git push
+        echo "Build complete!"
