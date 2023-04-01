@@ -1,7 +1,6 @@
 import subprocess
 import os
 import datetime
-import pyperclip
 import argparse
 
 def read_date_from_file(file_path):
@@ -37,8 +36,9 @@ def main():
 
     date = read_date_from_file(backdater_path)
     text_with_date = f'git commit -m "{args.message}" --date \"{date.strftime("%Y-%m-%d")}\"'
-    cmd_args = text_with_date.split()
-    subprocess.run(cmd_args, shell=True)
+    # cmd_args = text_with_date.split()
+    # print(cmd_args)
+    subprocess.run(text_with_date, shell=True)
     next_date = increment_date(date)
     print(f'Committed for: {date.strftime("%Y-%m-%d")}. Next commit will be for: {next_date.strftime("%Y-%m-%d")}')
     write_date_to_file(backdater_path, next_date)
