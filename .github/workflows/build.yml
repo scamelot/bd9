@@ -98,28 +98,30 @@ jobs:
     - name: Calculate SHA256 sums
       run: |
         echo "shasums:" >> shas
-        for file in artifacts/*; do
+        for file in artifacts/*/*; do
           sha256sum=$(sha256sum "$file" | awk '{print $1}')
           echo "${file##*/}: $sha256sum" >> shasums.txt
         done
 
     - name: Create Homebrew Formula
       run: |
-        if [ "$(uname)" = "Darwin" ]; then
-          binary_url="https://github.com/scamelot/bd9/releases/download/$version/bd9-darwin-x86_64.tar.gz"
-          sha256sum=$(grep 'darwin-universal.tar.gz:' shasums.txt | awk '{print $2}')
-        else
-          binary_url="https://github.com/scamelot/bd9/releases/download/$version/bd9-linux-x86_64.tar.gz"
-          sha256sum=$(grep 'linux-x86_64.tar.gz:' shasums.txt | awk '{print $2}')
-        fi
+        macos_sha256sum=$(grep 'darwin-universal2.tar.gz:' shasums.txt | awk '{print $2}')
+        linux_sha256sum=$(grep 'linux-x86_64.tar.gz:' shasums.txt | awk '{print $2}')
 
         cat << EOF > bd9.rb
           class Bd9 < Formula
             desc "Github Commit Backdater"  
             homepage "https://github.com/scamelot/bd9"
-            url "$binary_url"
+            
             version "$version"
-            sha256 "$sha256sum"
+            sha256 "$MACOS_SHA256SUM" => :catalina, "$LINUX_SHA256SUM" => :x86_64_linux
+
+            if OS.mac?
+              url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-darwin-universal2.tar.gz"
+                sha256 "MACOS_SHA256SUM" => :catalina, "LINUX_SHA256SUM" => :x86_64_linux
+
+            elsif OS.linux?
+              url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-linux-x86_64.tar.gz"
 
             def install
               if OS.mac?
