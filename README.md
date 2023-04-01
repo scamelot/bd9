@@ -17,3 +17,6 @@ The next use of `bd9 "your message here"` will be dated for 2023-01-02. Each run
 brew tap scamelot/bd9
 brew install bd9
 ```
+
+## Credits
+Inspired by https://backdater-9000.netlify.app/ 
