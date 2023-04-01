@@ -85,7 +85,7 @@ jobs:
 
     - name: Create GitHub Release
       run: |
-        latest_release=$(curl "https://api.github.com/repos/yourusername/yourrepository/releases/latest" | grep -oP '"tag_name": "\K[^"]+')
+        latest_release=$(gh release list -L 1)
         IFS="." read -ra version_parts <<< "$latest_release"
         ((version_parts[2]++))
         new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
