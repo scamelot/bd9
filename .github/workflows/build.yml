@@ -112,13 +112,14 @@ jobs:
             homepage "https://github.com/scamelot/bd9"
             
             version "${{ env.new_version }}"
-            sha256 "$macos_sha256sum" => :catalina, "$linux_sha256sum" => :x86_64_linux
 
             if OS.mac?
               url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-darwin-universal2.tar.gz"
+              sha256 "$macos_sha256sum"
 
             elsif OS.linux?
               url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-linux-x86_64.tar.gz"
+              sha256 "$linux_sha256sum"
 
             def install
               if OS.mac?
@@ -132,7 +133,7 @@ jobs:
               system "#{bin}/bd9", "-h"
             end
           end
-          EOF
+        EOF
 
     - name: Commit and push Homebrew Formula
       run: |
