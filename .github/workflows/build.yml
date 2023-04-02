@@ -86,7 +86,7 @@ jobs:
     - name: Create GitHub Release
       run: |
         latest_release=$(gh release list | head -n 1 | cut -f 1)
-        latest_version=$(echo ${last_release: - 1})
+        latest_version=$(echo ${latest_release: - 1})
         new_version=$($latest_version + 1)
         echo "Latest release: $latest_release"
         echo "New version: $new_version"
