@@ -87,7 +87,7 @@ jobs:
       run: |
         latest_release=$(gh release list | head -n 1 | cut -f 1)
         latest_version=$(echo ${latest_release: - 1})
-        new_version=$($latest_version + 1)
+        new_version=$(($latest_version + 1))
         echo "Latest release: $latest_release"
         echo "New version: $new_version"
         gh release create $new_version -t "v$new_version" -n "v$new_version" artifacts/*/* --debug
