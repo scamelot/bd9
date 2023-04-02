@@ -91,6 +91,7 @@ jobs:
         echo "Latest release: $latest_release"
         echo "New version: $new_version"
         gh release create $new_version -t "v$new_version" -n "v$new_version" artifacts/*/*
+        echo "new_version=$new_version" >> $GITHUB_ENV
 
     - name: Calculate SHA256 sums
       run: |
@@ -110,8 +111,8 @@ jobs:
             desc "Github Commit Backdater"  
             homepage "https://github.com/scamelot/bd9"
             
-            version "$new_version"
-            sha256 "$MACOS_SHA256SUM" => :catalina, "$LINUX_SHA256SUM" => :x86_64_linux
+            version "${{ env.new_version }}"
+            sha256 "$macos_sha256sum" => :catalina, "$linux_sha256sum" => :x86_64_linux
 
             if OS.mac?
               url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-darwin-universal2.tar.gz"
