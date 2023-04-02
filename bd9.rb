@@ -2,8 +2,8 @@
     desc "Github Commit Backdater"  
     homepage "https://github.com/scamelot/bd9"
     
-    version ""
-    sha256 "" => :catalina, "" => :x86_64_linux
+    version "3"
+    sha256 "94fb2e46d44f94adeca7c8a62cd0da8f4a9803970d0a295dbf22c81a7620a542" => :catalina, "dc8dcb7605c0f66a475aaf01551711b6de21ca849b762319bd6916b591a45ef1" => :x86_64_linux
 
     if OS.mac?
       url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-darwin-universal2.tar.gz"
