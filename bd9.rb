@@ -2,19 +2,21 @@
     desc "Github Commit Backdater"  
     homepage "https://github.com/scamelot/bd9"
     
-    version "5"
+    version "6"
 
     if OS.mac?
       url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-darwin-universal2.tar.gz"
-      sha256 "3c63ac5a17844afe3a7757848503ce05726168cc05fe50d224addef8770bb99d"
+      sha256 "10f38c2596914dc5bef256f767311d3a00bc09bc3b8a9e154d4549001148ae2b"
 
     elsif OS.linux?
       url "https://github.com/scamelot/bd9/releases/download/#{version}/bd9-linux-x86_64.tar.gz"
-      sha256 "f0274a06f3654caeb22e3bad2f6137007782b4fb3950b9e3747ca1bd2e9d5761"
+      sha256 "499e9a6a4ad2b832bd9285a07c208fd96e99aba8b59247efedfc78e45861c283"
+    
+    end
 
     def install
       if OS.mac?
-        bin.install "bd9-darwin-universal" => "bd9"
+        bin.install "bd9-darwin-universal2" => "bd9"
       elsif OS.linux?
         bin.install "bd9-linux-x86_64" => "bd9"
       end
